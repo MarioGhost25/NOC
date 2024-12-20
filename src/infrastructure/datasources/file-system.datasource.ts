@@ -50,6 +50,7 @@ export class FileSystemDataSource implements LogDataSource{
 
     private getLogsFromFile = ( path: string ): LogEntity[] => {
         const content = fs.readFileSync( path, 'utf-8' );
+        if( !content ) return [];
         const logs = content.split('\n').map(LogEntity.fromJson);
         // const logs = content.split('\n').map( 
         //   log => LogEntity.fromJson(log)
@@ -76,8 +77,4 @@ export class FileSystemDataSource implements LogDataSource{
       
     }
     
-}
-
-function createLogsFile() {
-    throw new Error('Function not implemented.');
 }
